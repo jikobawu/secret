@@ -96,7 +96,7 @@
       <div class="image-box">
         <img src="boquet.jpg" alt="Valentine Image" />
       </div>
-      <h1>Will you be my date for Valentines?</h1>
+      <h1>Awu, will you be my date for Valentines?</h1>
       <div class="container">
         <button class="btn yes-btn" onclick="sayYes()">Yes</button>
         <button class="btn no-btn" id="noButton" onclick="moveNoButton()">
@@ -108,7 +108,7 @@
     <script>
       function sayYes() {
         alert(" hehe I knew you'd say yes <3 ");
-        window.location.href = "";
+        window.location.href = "valentinesDate.html";
       }
 
       function moveNoButton() {
@@ -116,8 +116,8 @@
 
         noButton.style.position = "absolute";
 
-        const x = Math.random() * (window.innerWidth - 500);
-        const y = Math.random() * (window.innerHeight - 250);
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
         noButton.style.left = `${x}px`;
         noButton.style.top = `${y}px`;
       }
