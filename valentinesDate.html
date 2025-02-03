@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+s<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -222,7 +222,7 @@
         margin-top: 10px;
       }
 
-      .submit-dinner {
+      .submit {
         padding: 10px 20px;
         background-color: #ff6f61;
         color: white;
@@ -233,7 +233,7 @@
         font-size: 18px;
       }
 
-      .submit-dinner:hover {
+      .submit:hover {
         background-color: #e65c53;
       }
 
@@ -312,14 +312,6 @@
               value="dunkin"
             />
             <label for="dunkin">Dunkin</label>
-            <div class="food-option-dropdown" id="dunkin-dropdown">
-              <label for="dunkin-options">Choose Flavor:</label>
-              <select id="dunkin-options" name="dunkin-flavor">
-                <option value="">Select a Flavor</option>
-                <option value="choco-marbles">Choco Marbles</option>
-                <option value="choco-glazed">Choco Glazed</option>
-              </select>
-            </div>
           </div>
 
           <div class="checkbox-container">
@@ -330,14 +322,6 @@
               value="pizza"
             />
             <label for="pizza">Pizza</label>
-            <div class="food-option-dropdown" id="pizza-dropdown">
-              <label for="pizza-options">Choose Crust:</label>
-              <select id="pizza-options" name="pizza-crust">
-                <option value="">Choose Crust</option>
-                <option value="thin">Thin Crust</option>
-                <option value="thick">Thick Crust</option>
-              </select>
-            </div>
           </div>
 
           <div class="checkbox-container">
@@ -348,14 +332,6 @@
               value="nuggets"
             />
             <label for="nuggets">Nuggets</label>
-            <div class="food-option-dropdown" id="nuggets-dropdown">
-              <label for="nuggets-options">Choose Quantity:</label>
-              <select id="nuggets-options" name="nuggets-quantity">
-                <option value="">Choose Quantity</option>
-                <option value="10pc">10pcs</option>
-                <option value="20pc">20pcs</option>
-              </select>
-            </div>
           </div>
 
           <div class="checkbox-container">
@@ -366,14 +342,6 @@
               value="fries"
             />
             <label for="fries">Fries</label>
-            <div class="food-option-dropdown" id="fries-dropdown">
-              <label for="fries-options">Choose Type:</label>
-              <select id="fries-options" name="fries-type">
-                <option value="">Choose Type</option>
-                <option value="potcor">Potato Corner</option>
-                <option value="bff">BFF Fries (McDonald's)</option>
-              </select>
-            </div>
           </div>
 
           <div class="checkbox-container">
@@ -394,14 +362,6 @@
               value="tacobell"
             />
             <label for="tacobell">Taco Bell</label>
-            <div class="food-option-dropdown" id="tacobell-dropdown">
-              <label for="tacobell-options">Choose Option:</label>
-              <select id="tacobell-options" name="tacobell-option">
-                <option value="">Choose Option</option>
-                <option value="beef-burrito">Beef Burrito</option>
-                <option value="nachos">Nachos w/ Nacho Cheese</option>
-              </select>
-            </div>
           </div>
 
           <div class="checkbox-container">
@@ -461,18 +421,6 @@
               value="coco"
             />
             <label for="coco">Coco</label>
-            <div class="drink-option-dropdown" id="coco-dropdown">
-              <label for="coco-options">Choose Drink:</label>
-              <select id="coco-options" name="coco-drink">
-                <option value="">Choose Drink</option>
-                <option value="salty-cream-milk-tea">
-                  Salty Cream Milk Tea with White Pearl
-                </option>
-                <option value="salty-cream-chocolate">
-                  Salty Cream Chocolate
-                </option>
-              </select>
-            </div>
           </div>
 
           <div class="checkbox-container">
@@ -483,16 +431,6 @@
               value="quickly"
             />
             <label for="quickly">Quickly</label>
-            <div class="drink-option-dropdown" id="quickly-dropdown">
-              <label for="quickly-options">Choose Drink:</label>
-              <select id="quickly-options" name="quickly-drink">
-                <option value="">Choose Drink</option>
-                <option value="choco-choco">
-                  Choco Choco with Choco Syrup
-                </option>
-                <option value="choco-choco">Green Apple Ice</option>
-              </select>
-            </div>
           </div>
         </div>
       </div>
@@ -538,87 +476,93 @@
           </div>
         </div>
 
-        <button class="submit-dinner">Submit</button>
+        <button class="submit">Submit</button>
         <button type="button" class="reset" id="resetButton">Reset</button>
       </div>
     </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-          const message = "Hi baby awu, so that means we have a date on valentines no? ...";
-          let index = 0;
-          const typedMessageElement = document.getElementById("typed-message");
+        const message =
+          "Hi baby awu, so that means we have a date on valentines no? ...";
+        let index = 0;
+        const typedMessageElement = document.getElementById("typed-message");
 
-          function typeMessage() {
-              if (index < message.length) {
-                  typedMessageElement.textContent += message.charAt(index);
-                  index++;
-                  setTimeout(typeMessage, 35);
-              }
+        function typeMessage() {
+          if (index < message.length) {
+            typedMessageElement.textContent += message.charAt(index);
+            index++;
+            setTimeout(typeMessage, 35);
           }
-          typeMessage();
+        }
+        typeMessage();
 
-          const resetButton = document.getElementById("resetButton");
+        const resetButton = document.getElementById("resetButton");
 
-          resetButton.addEventListener("click", function () {
-              document.getElementById("receiver-message").value = "";
+        resetButton.addEventListener("click", function () {
+          document.getElementById("receiver-message").value = "";
 
-              const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-              checkboxes.forEach((checkbox) => (checkbox.checked = false));
+          const checkboxes = document.querySelectorAll(
+            'input[type="checkbox"]'
+          );
+          checkboxes.forEach((checkbox) => (checkbox.checked = false));
 
-              const radios = document.querySelectorAll('input[type="radio"]');
-              radios.forEach((radio) => (radio.checked = false));
+          const radios = document.querySelectorAll('input[type="radio"]');
+          radios.forEach((radio) => (radio.checked = false));
 
-              const selects = document.querySelectorAll("select");
+          const selects = document.querySelectorAll("select");
           selects.forEach((select) => (select.selectedIndex = 0));
+        });
 
-          selects.forEach((select) => (select.selectedIndex = 0));
-          });
+        document
+          .getElementById("messageForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
 
-          document.getElementById("messageForm").addEventListener("submit", function (event) {
-              event.preventDefault();
+            const message = document.getElementById("receiver-message").value;
+            const foodChoices = [
+              ...document.querySelectorAll('input[name="picnic-food"]:checked'),
+            ].map((e) => e.value);
+            const drinkChoices = [
+              ...document.querySelectorAll(
+                'input[name="picnic-drinks"]:checked'
+              ),
+            ].map((e) => e.value);
+            const dinnerChoices = [
+              ...document.querySelectorAll(
+                'input[name="dinner-options"]:checked'
+              ),
+            ].map((e) => e.value);
 
-              const message = document.getElementById("receiver-message").value;
-              const foodChoices = [...document.querySelectorAll('input[name="picnic-food"]:checked')].map(e => {
-                  const id = e.id;
-                  const dropdown = document.querySelector(`#${id}-dropdown select`);
-                  const dropdownValue = dropdown ? dropdown.value : null;
-                  return { food: e.value, option: dropdownValue };
-              });
-              const drinkChoices = [...document.querySelectorAll('input[name="picnic-drinks"]:checked')].map(e => {
-                  const id = e.id;
-                  const dropdown = document.querySelector(`#${id}-dropdown select`);
-                  const dropdownValue = dropdown ? dropdown.value : null;
-                  return { drink: e.value, option: dropdownValue };
-              });
-              const dinnerChoices = [...document.querySelectorAll('input[name="dinner-options"]:checked')].map(e => e.value);
+            const data = {
+              message,
+              foodChoices,
+              drinkChoices,
+              dinnerChoices,
+            };
 
-              const data = {
-                  message,
-                  foodChoices,
-                  drinkChoices,
-                  dinnerChoices,
-              };
-
-              fetch("https://script.google.com/macros/s/AKfycbycdAcYei7XNx7sqlSLyahSniRs_IapA-TSqE0II7vaVybfFnEynu5WJYi19W_ANdPcaw/exec", {
-                  method: "POST",
-                  headers: {
-                      "Content-Type": "application/json",
-                      "Content-Type": "text/plain;charset=utf-8",
-                  },
-                  body: JSON.stringify(data),
-              })
+            fetch(
+              "https://script.google.com/macros/s/AKfycbwvOCow4R1xBoa-MZtd4R_GSNkdRDduWtUcMWARe6MdP_gviSejIaJAZ-hiecjWnTWTOQ/exec",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Content-Type": "text/plain;charset=utf-8",
+                },
+                body: JSON.stringify(data),
+              }
+            )
               .then((response) => response.text())
               .then((response) => {
-                  alert("Message sent successfully!");
-                  console.log(response);
+                alert("Message sent successfully!");
+                console.log(response);
               })
               .catch((error) => {
-                  console.error("Error:", error);
-                  alert("There was an error sending the message.");
+                console.error("Error:", error);
+                alert("There was an error sending the message.");
               });
           });
-       });
+      });
     </script>
   </body>
 </html>
