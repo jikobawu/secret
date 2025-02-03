@@ -237,7 +237,7 @@
         background-color: #e65c53;
       }
 
-      .reset{
+      .reset {
         padding: 10px 20px;
         background-color: #ff6f61;
         color: white;
@@ -251,11 +251,9 @@
       .reset:hover {
         background-color: #e65c53;
       }
-
     </style>
   </head>
   <body>
-    <!-- Hero Section with Image -->
     <div class="hero">
       <img
         src="your-image-url-here.jpg"
@@ -264,7 +262,6 @@
       />
     </div>
 
-    <!-- Message Section with Image on the left -->
     <div class="message-section">
       <div class="image-section">
         <img
@@ -278,10 +275,9 @@
       </div>
     </div>
 
-    <!-- Personalized Message Section -->
     <div class="personal-message">
       <h2>Your Message</h2>
-      <form id="messageForm">
+      <form id="messageForm" value="message" method="post">
         <textarea
           id="receiver-message"
           placeholder="Write your message..."
@@ -291,17 +287,13 @@
       </form>
     </div>
 
-    <!-- Itinerary Form Section -->
     <div class="itinerary-form">
-      <h2>Plan Your Date</h2>
+      <h2>What is Awu craving?</h2>
 
-      <!-- Picnic Food and Drinks Section -->
       <div class="picnic-section">
-        <!-- Picnic Food Section -->
         <div class="picnic-food-options">
           <label><h2>Picnic Food</h2></label>
 
-          <!-- Checkboxes for Picnic Food options -->
           <div class="checkbox-container">
             <input
               type="checkbox"
@@ -505,7 +497,6 @@
         </div>
       </div>
 
-      <!-- Dinner Options Section -->
       <div class="dinner-section">
         <h2>Choose Your Dinner</h2>
         <div class="dinner-options">
@@ -563,32 +554,64 @@
           if (index < message.length) {
             typedMessageElement.textContent += message.charAt(index);
             index++;
-            setTimeout(typeMessage, 30);
+            setTimeout(typeMessage, 35);
           }
         }
         typeMessage();
 
-        // Reset functionality for form and selected options
         const resetButton = document.getElementById("resetButton");
 
         resetButton.addEventListener("click", function () {
-          // Clear text area message
           document.getElementById("receiver-message").value = "";
 
-          // Reset all checkboxes
           const checkboxes = document.querySelectorAll(
             'input[type="checkbox"]'
           );
           checkboxes.forEach((checkbox) => (checkbox.checked = false));
 
-          // Reset all radio buttons (if any)
           const radios = document.querySelectorAll('input[type="radio"]');
           radios.forEach((radio) => (radio.checked = false));
 
-          // Reset all dropdowns
           const selects = document.querySelectorAll("select");
           selects.forEach((select) => (select.selectedIndex = 0));
         });
+
+        document
+          .getElementById("messageForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const message = document.getElementById("receiver-message").value;
+            const foodChoices = [
+              ...document.querySelectorAll('input[name="picnic-food"]:checked'),
+            ].map((e) => e.value);
+            const drinkChoices = [
+              ...document.querySelectorAll(
+                'input[name="picnic-drinks"]:checked'
+              ),
+            ].map((e) => e.value);
+            const dinnerChoices = [
+              ...document.querySelectorAll(
+                'input[name="dinner-options"]:checked'
+              ),
+            ].map((e) => e.value);
+
+            const data = {
+              message,
+              foodChoices,
+              drinkChoices,
+              dinnerChoices,
+            };
+
+            fetch("https://script.google.com/macros/s/AKfycbyBTeZpHdUo2orlxTMixGvaCWpQnjWIdhDqO2KrrAsJuUsM6bGoERkr4hiBZkAtckTcrA/exec", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            })
+              .then((response) => response.text())
+              .then((response) => alert("Message sent successfully!"))
+              .catch((error) => console.error("Error:", error));
+          });
       });
     </script>
   </body>
