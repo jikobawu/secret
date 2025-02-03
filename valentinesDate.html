@@ -545,7 +545,8 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const message = "Hi baby awu, ..."; // Your message
+        const message =
+          "Hi baby awu, so that means we have a date on valentines no? ...";
         let index = 0;
         const typedMessageElement = document.getElementById("typed-message");
 
@@ -603,10 +604,13 @@
             };
 
             fetch(
-              "https://script.google.com/macros/s/AKfycbxoqAzmeD_K73c6bNEGjQi51p7iC6rf8uqA5mNL4I1oGu0wORAtOFX8lTDCFaI1v7w0mw/exec",
+              "https://script.google.com/macros/s/AKfycbwveyTggM3NuCVE0bnck3FlgxJ6REOMseaLcliO3cEv/dev",
               {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*", // Handle CORS
+                },
                 body: JSON.stringify(data),
               }
             )
