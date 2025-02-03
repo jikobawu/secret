@@ -603,11 +603,14 @@
               dinnerChoices,
             };
 
-            fetch("https://script.google.com/macros/s/AKfycbwveyTggM3NuCVE0bnck3FlgxJ6REOMseaLcliO3cEv/dev", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(data),
-            })
+            fetch(
+              "https://script.google.com/macros/s/AKfycbwveyTggM3NuCVE0bnck3FlgxJ6REOMseaLcliO3cEv/dev",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+              }
+            )
               .then((response) => response.text())
               .then((response) => alert("Message sent successfully!"))
               .catch((error) => console.error("Error:", error));
