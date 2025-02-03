@@ -545,10 +545,11 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const message = "Hi baby awu, so that means we have a date on valentines no? ...";
+        const message =
+          "Hi baby awu, so that means we have a date on valentines no? ...";
         let index = 0;
         const typedMessageElement = document.getElementById("typed-message");
-  
+
         function typeMessage() {
           if (index < message.length) {
             typedMessageElement.textContent += message.charAt(index);
@@ -557,54 +558,71 @@
           }
         }
         typeMessage();
-  
+
         const resetButton = document.getElementById("resetButton");
-  
+
         resetButton.addEventListener("click", function () {
           document.getElementById("receiver-message").value = "";
-  
-          const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+          const checkboxes = document.querySelectorAll(
+            'input[type="checkbox"]'
+          );
           checkboxes.forEach((checkbox) => (checkbox.checked = false));
-  
+
           const radios = document.querySelectorAll('input[type="radio"]');
           radios.forEach((radio) => (radio.checked = false));
-  
+
           const selects = document.querySelectorAll("select");
           selects.forEach((select) => (select.selectedIndex = 0));
         });
-  
-        document.getElementById("messageForm").addEventListener("submit", function (event) {
-          event.preventDefault();
-  
-          const message = document.getElementById("receiver-message").value;
-          const foodChoices = [...document.querySelectorAll('input[name="picnic-food"]:checked')].map((e) => e.value);
-          const drinkChoices = [...document.querySelectorAll('input[name="picnic-drinks"]:checked')].map((e) => e.value);
-          const dinnerChoices = [...document.querySelectorAll('input[name="dinner-options"]:checked')].map((e) => e.value);
-  
-          const data = {
-            message,
-            foodChoices,
-            drinkChoices,
-            dinnerChoices,
-          };
-  
-          fetch("https://script.google.com/macros/s/AKfycbwvOCow4R1xBoa-MZtd4R_GSNkdRDduWtUcMWARe6MdP_gviSejIaJAZ-hiecjWnTWTOQ/exec", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          })
-          .then((response) => response.text())
-          .then((response) => {
-            alert("Message sent successfully!");
-            console.log(response);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-            alert("There was an error sending the message.");
+
+        document
+          .getElementById("messageForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const message = document.getElementById("receiver-message").value;
+            const foodChoices = [
+              ...document.querySelectorAll('input[name="picnic-food"]:checked'),
+            ].map((e) => e.value);
+            const drinkChoices = [
+              ...document.querySelectorAll(
+                'input[name="picnic-drinks"]:checked'
+              ),
+            ].map((e) => e.value);
+            const dinnerChoices = [
+              ...document.querySelectorAll(
+                'input[name="dinner-options"]:checked'
+              ),
+            ].map((e) => e.value);
+
+            const data = {
+              message,
+              foodChoices,
+              drinkChoices,
+              dinnerChoices,
+            };
+
+            fetch(
+              "https://script.google.com/macros/s/AKfycbwvOCow4R1xBoa-MZtd4R_GSNkdRDduWtUcMWARe6MdP_gviSejIaJAZ-hiecjWnTWTOQ/exec",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+              }
+            )
+              .then((response) => response.text())
+              .then((response) => {
+                alert("Message sent successfully!");
+                console.log(response);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+                alert("There was an error sending the message.");
+              });
           });
-        });
       });
     </script>
   </body>
