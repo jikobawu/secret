@@ -1,4 +1,4 @@
-s<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -541,17 +541,14 @@ s<!DOCTYPE html>
               dinnerChoices,
             };
 
-            fetch(
-              "https://script.google.com/macros/s/AKfycbwvOCow4R1xBoa-MZtd4R_GSNkdRDduWtUcMWARe6MdP_gviSejIaJAZ-hiecjWnTWTOQ/exec",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  "Content-Type": "text/plain;charset=utf-8",
-                },
-                body: JSON.stringify(data),
-              }
-            )
+            fetch("YOUR_DEPLOYED_WEB_APP_URL_HERE", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Content-Type": "text/plain;charset=utf-8",
+              },
+              body: JSON.stringify(data),
+            })
               .then((response) => response.text())
               .then((response) => {
                 alert("Message sent successfully!");
